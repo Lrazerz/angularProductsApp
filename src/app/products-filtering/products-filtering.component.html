@@ -11,7 +11,7 @@
         </mat-form-field>
         <!-- selection group -->
         <section class="filter-category-section">
-                <mat-radio-button class="filter-category-button" value="{{elem}}" *ngFor="let elem of groupOfProducts" color="primary" (change)="toFilterCheckBox($event)"> 
+                <mat-radio-button class="filter-category-button" value="{{elem}}" *ngFor="let elem of groupOfProducts" color="primary" (change)="groupFilterRadio($event)"> 
                         {{elem}}
                 </mat-radio-button>
 

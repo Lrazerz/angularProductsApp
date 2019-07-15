@@ -24,7 +24,7 @@ export class ProductsFilteringComponent implements OnInit {
   lastCheckedButton;
     
     // po radiobutton
-    toFilterCheckBox(event) {
+    groupFilterRadio(event) {
       this.lastCheckedButton = event;
       this.displayProducts.data = this.products.filter(el => el['bsr_category'] === event.value);
     }

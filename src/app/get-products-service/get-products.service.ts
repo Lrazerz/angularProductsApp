@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
+// Возвращаем Observable
   fetchProducts(): Observable<any> {
     return this.http.get('https://demo8421975.mockable.io/products');
   }
