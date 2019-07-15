@@ -1,7 +1,8 @@
 <div id="wrapper">
 
 
-<app-products-filtering></app-products-filtering>
+<app-products-filtering [products]="products$" [displayProducts]="displayProducts$" 
+[groupOfProducts]="groupList$"></app-products-filtering>
 
 <!-- <div *ngIf="checks">
         <h1 *ngFor="let elem of Checked()">{{elem}}</h1>

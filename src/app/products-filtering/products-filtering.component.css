@@ -1,0 +1,17 @@
+.filter-category-section {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .filter-category-button {
+    margin: 5px 0;
+  }
+
+  .filter-category-button:first-child {
+    margin-top: 15px;
+  }
+
+  .clear-filter-button {
+    margin: 10px 0;
+  }

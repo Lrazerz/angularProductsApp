@@ -1,12 +1,14 @@
 // OnInit - для запуска функции on page load
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { ProductsService } from './products-list.service'
+import { ProductsService } from '../get-products-service/get-products.service'
 // To sort table
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
 
+
+// maybe delete
 export interface AmazonProduct {
   name: string;
   brand: string;
@@ -27,6 +29,7 @@ export interface AmazonProduct {
     // Products to display
     displayProducts$: any;
 
+    // Нужно взять
     groupList$: any;
   
     constructor(private productsService: ProductsService){}
@@ -46,7 +49,22 @@ export interface AmazonProduct {
         this.groupList$ = [...new Set(this.groupList$)];
       });
     }
-   
+
+    // Проверка на пустоту списка
+    listIsEmpty(): boolean {
+      return !(this.displayProducts$.length as boolean);
+    }
+    
+    // Тут задаем и порядок столбцов
+    displayedColumns: string[] = ['name', 'brand', 'price', 'bsr_category', 'stars'];
+
+    // Для сортировки при нажатии на th
+    @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+    ngOnInit() {
+      this.fetchProducts();
+    }
+    
     //Старая фильтрация ( через input) через ts
     // filterProducts(): void {
     //   if(this.products$ !== undefined)
@@ -72,48 +90,4 @@ export interface AmazonProduct {
     //     this.displayProducts$.sort = this.sort;
     //   }
     // }
-
-    applyFilter(filterValue: string) {
-      this.displayProducts$.filter = filterValue.trim().toLowerCase();
-      console.log(this.displayProducts$);
-    }
-
-    // Проверка на пустоту списка
-    listIsEmpty(): boolean {
-      return !(this.displayProducts$.length as boolean);
-    }
-    
-    // Тут задаем и порядок столбцов
-    displayedColumns: string[] = ['name', 'brand', 'price', 'bsr_category', 'stars'];
-
-    
-    lastCheckedButton;
-    
-    // po radiobutton
-    toFilterCheckBox(event) {
-      this.lastCheckedButton = event;
-      this.displayProducts$.data = this.products$.filter(el => el['bsr_category'] === event.value);
-    }
-
-    clearFilters() {
-      console.log(this.lastCheckedButton)
-      this.lastCheckedButton.source.checked = false;
-      document.querySelector('input').value = "";
-      console.log(document.querySelectorAll('.filter-category-button')[0])
-      document.querySelectorAll('.filter-category-button').forEach( el => {(<HTMLInputElement>el).checked = false;});
-      // Возвращаем данные
-      this.displayProducts$.data = this.products$;
-      this.applyFilter("");
-    }
-
-
-
-
-    // Для сортировки при нажатии на th
-    @ViewChild(MatSort, {static: true}) sort: MatSort;
-
-    ngOnInit() {
-      this.fetchProducts();
-    }
-    
 }

@@ -6,10 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { ProductsService } from './products-list/products-list.service'
-import { ProductsList } from './products-list/products-list'
+import { ProductsService } from './get-products-service/get-products.service'
+import { ProductsList } from './products-list/products-list.component'
 import { AppMaterialModule } from './app-material.module';
-import { ProductsFilteringComponent } from './products-filtering/products-filtering.component'
+import { ProductsFilteringComponent } from './products-filtering/products-filtering.component';
 
 // декоратор для класса
 @NgModule({

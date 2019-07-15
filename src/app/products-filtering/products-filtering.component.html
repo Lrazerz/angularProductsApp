@@ -1,23 +1,21 @@
-<p>products-filtering works!</p>
-
 <mat-card>
     <mat-card-content>
-        <!-- filtering -->  
+        <!-- filtering -->
         <mat-form-field>
             <input class="filter-input" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
             <mat-hint>search by anything :)</mat-hint>
-            <mat-error>
+            <!-- <mat-error>
                 No products found with this filter. 
                 Try to change the text.
-            </mat-error>
+            </mat-error> -->
         </mat-form-field>
         <!-- selection group -->
         <section class="filter-category-section">
-                <mat-radio-button class="filter-category-button" value="{{elem}}" *ngFor="let elem of groupList$" color="primary" (change)="toFilterCheckBox($event)"> 
+                <mat-radio-button class="filter-category-button" value="{{elem}}" *ngFor="let elem of groupOfProducts" color="primary" (change)="toFilterCheckBox($event)"> 
                         {{elem}}
                 </mat-radio-button>
 
-                <button class="clean-filter-button" mat-raised-button color="primary" (click)="clearFilters()">Clear filters</button>
+                <button class="clear-filter-button" mat-raised-button color="primary" (click)="clearFilters()">Clear filters</button>
         </section>
     </mat-card-content>
 </mat-card>
