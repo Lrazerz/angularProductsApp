@@ -1,0 +1,83 @@
+<div id="wrapper">
+
+
+<app-products-filtering></app-products-filtering>
+
+<!-- <div *ngIf="checks">
+        <h1 *ngFor="let elem of Checked()">{{elem}}</h1>
+</div> -->
+
+    
+
+    <!-- Material table -->
+
+<mat-card>
+    <mat-card-content>
+        <table class="main__table" mat-table [dataSource]="displayProducts$" matSort color="primary">
+
+        <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+        
+        
+        <!-- Columns -->
+        <!-- Можно проще, название столбца такое же только с большой буквы -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brand">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Brand </th>
+                <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="stars">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Stars </th>
+                <td mat-cell *matCellDef="let element"> {{element.stars}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="bsr_category">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                <td mat-cell *matCellDef="let element"> {{element['bsr_category']}} </td>
+            </ng-container>
+
+            <!-- Порядок столбцов указан в displayedColumns -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+    <h3 class="empty-search-tip visually-hidden">No products found with this filter. 
+    Try to change the text in the field near the "Search".</h3>
+    
+    </mat-card-content>
+</mat-card>
+</div>
+
+<!-- My old table -->
+<!-- <table class="main__table">
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Брэнд</th>
+                    <th>Цена</th>
+                    <th>Оценка</th>
+                    <th>Ссылка</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of displayProducts$">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.brand }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.stars }}</td>
+                    <td><a href="{{ item.link }}" target="_blank" alt="product on amazon">on amazon.co.uk</a></td>
+                </tr>
+            </tbody>
+        </table>
+<h3 class="empty-search-tip visually-hidden">No products found with this filter. 
+    Try to change the text in the field near the "Search".</h3> -->
