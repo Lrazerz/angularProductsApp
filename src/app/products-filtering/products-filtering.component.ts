@@ -36,15 +36,11 @@ export class ProductsFilteringComponent implements OnInit {
       console.log(document.querySelectorAll('.filter-category-button')[0])
       document.querySelectorAll('.filter-category-button').forEach( el => {(<HTMLInputElement>el).checked = false;});
       // Возвращаем данные
-      this.displayProducts$.data = this.products$;
+      this.displayProducts.data = this.products;
       this.applyFilter("");
     }
 
   ngOnInit() {
-
-
-
-
   }
 
 }
