@@ -2,20 +2,23 @@
     <mat-card-content>
         <!-- filtering -->
         <mat-form-field>
-            <input class="filter-input" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+            <input [routerLink]="['']" [(ngModel)]="searchQuery" [queryParams]="{'search':searchQuery, 'group': searchGroupQuery}"
+            class="filter-input" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
             <mat-hint>search by anything :)</mat-hint>
             <!-- <mat-error>
                 No products found with this filter. 
                 Try to change the text.
             </mat-error> -->
         </mat-form-field>
-        <!-- selection group -->
-        <section class="filter-category-section">
-                <mat-radio-button class="filter-category-button" value="{{elem}}" *ngFor="let elem of groupOfProducts" color="primary" (change)="groupFilterRadio($event)"> 
-                        {{elem}}
+        <!-- Group filter-->
+            <mat-radio-group class="filter-category-section" [(ngModel)]="radioButState">
+                <mat-radio-button [routerLink]="['']" [queryParams]="{'search':searchQuery, 'group': elem}"
+                class="filter-category-button" color="primary" (change)="groupFilterRadio($event)"
+                *ngFor="let elem of groupOfProducts" value="{{elem}}" name="groupRad"> 
+                    {{elem}}
                 </mat-radio-button>
+            </mat-radio-group>
+            <button class="clear-filter-button" mat-raised-button color="primary" (click)="clearFilters()">Clear filters</button>
 
-                <button class="clear-filter-button" mat-raised-button color="primary" (click)="clearFilters()">Clear filters</button>
-        </section>
     </mat-card-content>
 </mat-card>
