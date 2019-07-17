@@ -61,18 +61,16 @@ OnChanges {
         this.displayProducts.data = this.products.filter(el => el['bsr_category'] === event.value);
     }
 
-    // добавить все группы
     clearFilters() {
         this.applyFilter("");
         this.searchQuery = "";
         this.searchGroupQuery = "";
         this.radioButState = "";
         // return data, deleted to group filter
-        this.displayProducts.data = this.products;
+        this.showAllGroups();
         this.updateRoute();
     }
 
-    // update route on input changes
     updateRoute() {
       // If route have no parameters queries, just route to main page
       if(!(this.searchQuery || this.searchGroupQuery))
@@ -103,9 +101,13 @@ OnChanges {
         // reload radio-button with group filter state
         this.radioButState = this.searchGroupQuery;
         // "change" event dont occurs, when we change button from comp (?)
-        console.log(this.searchGroupQuery);
-        this.displayProducts.data = this.products.filter(el => el['bsr_category'] === this.searchGroupQuery);
+        if(this.searchGroupQuery)
+            this.displayProducts.data = this.products.filter(el => el['bsr_category'] === this.searchGroupQuery);
       }
+    }
+
+    showAllGroups() {
+        this.displayProducts.data = this.products;
     }
 
     ngOnDestroy() {

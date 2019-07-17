@@ -6,17 +6,20 @@
             class="filter-input" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
             <mat-hint>search by anything :)</mat-hint>
             <!-- <mat-error>
-                No products found with this filter. 
-                Try to change the text.
+                No products found with this filter.
             </mat-error> -->
         </mat-form-field>
         <!-- Group filter-->
             <mat-radio-group class="filter-category-section" [(ngModel)]="radioButState">
                 <mat-radio-button [routerLink]="['']" [queryParams]="{'search':searchQuery, 'group': elem}"
                 class="filter-category-button" color="primary" (change)="groupFilterRadio($event)"
-                *ngFor="let elem of groupOfProducts" value="{{elem}}" name="groupRad"> 
+                *ngFor="let elem of groupOfProducts" value="{{elem}}" name="groupRadio"> 
                     {{elem}}
                 </mat-radio-button>
+                <mat-radio-button [routerLink]="['']" [queryParams]="{'search':searchQuery}" color="primary"
+                (change)="showAllGroups()" value="" name = "groupRadio" [attr.checked]="true">
+                All products
+            </mat-radio-button>
             </mat-radio-group>
             <button class="clear-filter-button" mat-raised-button color="primary" (click)="clearFilters()">Clear filters</button>
 
