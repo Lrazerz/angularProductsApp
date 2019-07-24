@@ -1,67 +1,56 @@
-// OnInit - для запуска функции on page load
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-
+import { Component, OnInit, ViewChild, OnDestroy, DoCheck } from '@angular/core';
 import { ProductsService } from '../get-products-service/get-products.service'
-// To sort table
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
 @Component({
-    // селектор для замены
     selector: 'products-list',
     templateUrl: './products-list.html',
     styleUrls: [ './products-list.css' ]
   })
-  export class ProductsList implements OnInit, OnDestroy {
-    //was object[]
-    products$: any;
-    // Products to display
+  export class ProductsList implements OnInit, OnDestroy, DoCheck {
+    products$: [];
     displayProducts$: any;
-
-    groupList$: any;
-
+    groupList$: [];
     radioButtonState: string;
-
-    
     private httpSubscription: Subscription;
-  
-    constructor(private productsService: ProductsService){}
-  
-    
-     
-    // Возвращаем только объект с продуктами с JSON файла в products$
-    fetchProducts(): void {
-      this.httpSubscription = this.productsService.fetchProducts().subscribe(data => {
-        this.displayProducts$=this.products$=data["products"]
+    productsNotConverted: boolean = true;
+
+    constructor(private productsService: ProductsService,
+                private store: Store<{products: any }> ) {
+                this.store.subscribe(data => {this.displayProducts$ = data.products})
+    }
+
+    ngDoCheck(): void {
+        if(this.productsNotConverted && this.displayProducts$.length)
+            this.ConvertToSortable();
+
+    }
+
+    @ViewChild(MatSort, {static: true}) sort: MatSort;
+    ConvertToSortable() {
+        this.products$ = this.displayProducts$;
         // to sort
         this.displayProducts$ = new MatTableDataSource(this.displayProducts$);
         this.displayProducts$.sort = this.sort;
         // to group filter
-        this.groupList$ = this.products$.map(el => el['bsr_category']);
+        this.groupList$ = <[]>this.products$.map(el => el['bsr_category']);
+        
         // only unique
-        this.groupList$ = [...new Set(this.groupList$)];
-      });
-    }
-
-    // check for list empty
-    listIsEmpty(): boolean {
-      return !(this.displayProducts$.length as boolean);
+        this.groupList$ = <[]>[...new Set(this.groupList$)];
+        // only 1 times
+        this.productsNotConverted = false;
     }
     
-    // column order
     displayedColumns: string[] = ['name', 'brand', 'price', 'bsr_category', 'stars'];
 
-    // sorting on click on th
-    @ViewChild(MatSort, {static: true}) sort: MatSort;
-
     ngOnInit(): void {
-      this.fetchProducts();
+      this.store.dispatch({ type: '[Products Page] Load Products' });
     }
 
     ngOnDestroy(): void {
-      //Called once, before the instance is destroyed.
-      //Add 'implements OnDestroy' to the class.
       this.httpSubscription.unsubscribe();
     }
 }

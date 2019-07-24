@@ -1,48 +1,49 @@
 <div id="wrapper">
-<app-products-filtering [products]="products$" [displayProducts]="displayProducts$" 
-[groupOfProducts]="groupList$"></app-products-filtering>
 
-<mat-card>
-    <mat-card-content>
-        <table class="main__table" mat-table [dataSource]="displayProducts$" matSort color="primary">
+    <app-products-filtering [products]="products$" [displayProducts]="displayProducts$" 
+    [groupOfProducts]="groupList$"></app-products-filtering>
 
-        <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-        
-        <!-- Columns -->
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
+    <mat-card class="mat-card">
+        <mat-card-content>
+            <table class="main__table" mat-table [dataSource]="displayProducts$" matSort color="primary">
 
-            <ng-container matColumnDef="brand">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Brand </th>
-                <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="stars">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Stars </th>
-                <td mat-cell *matCellDef="let element"> {{element.stars}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="price">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-            </ng-container>
+            <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
             
-            <ng-container matColumnDef="bsr_category">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-                <td mat-cell *matCellDef="let element"> {{element['bsr_category']}} </td>
-            </ng-container>
+            <!-- Columns -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
 
-            <!-- Порядок столбцов указан в displayedColumns -->
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+                <ng-container matColumnDef="brand">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Brand </th>
+                    <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="stars">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Stars </th>
+                    <td mat-cell *matCellDef="let element"> {{element.stars}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="bsr_category">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                    <td mat-cell *matCellDef="let element"> {{element['bsr_category']}} </td>
+                </ng-container>
+
+                <!-- Порядок столбцов указан в displayedColumns -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            
+        <h3 class="empty-search-tip visually-hidden">No products found with this filter. 
+        Try to change the text in the field near the "Search".</h3>
         
-    <h3 class="empty-search-tip visually-hidden">No products found with this filter. 
-    Try to change the text in the field near the "Search".</h3>
-    
-    </mat-card-content>
-</mat-card>
+        </mat-card-content>
+    </mat-card>
 </div>

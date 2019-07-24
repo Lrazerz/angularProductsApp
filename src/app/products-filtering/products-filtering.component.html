@@ -1,10 +1,11 @@
 <mat-card>
-    <mat-card-content>
+    <mat-card-content class="mar-card-content">
         <!-- filtering -->
-        <mat-form-field>
-            <input [routerLink]="['']" [(ngModel)]="searchQuery" [queryParams]="{'search':searchQuery, 'group': searchGroupQuery}"
-            class="filter-input" matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-            <mat-hint>search by anything :)</mat-hint>
+        <mat-form-field class="filter-input">
+                <input [routerLink]="['']" [(ngModel)]="searchQuery" [queryParams]="{'search':searchQuery, 'group': searchGroupQuery}"
+                 matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                <mat-hint class="mat-input-hint">search by anything :)</mat-hint>
+            
             <!-- <mat-error>
                 No products found with this filter.
             </mat-error> -->
@@ -17,7 +18,7 @@
                     {{elem}}
                 </mat-radio-button>
                 <mat-radio-button [routerLink]="['']" [queryParams]="{'search':searchQuery}" color="primary"
-                (change)="showAllGroups()" value="" name = "groupRadio" [attr.checked]="true">
+                (change)="showAllGroups()" value="" name = "groupRadio" [attr.checked]="true" class="filter-category-button">
                 All products
             </mat-radio-button>
             </mat-radio-group>

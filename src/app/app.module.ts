@@ -13,8 +13,14 @@ import { AppMaterialModule } from './app-material.module';
 import { ProductsFilteringComponent } from './products-filtering/products-filtering.component';
 
 // Навигация
-import { Routes, RouterModule } from '@angular/router'
+import { Routes, RouterModule } from '@angular/router';
 
+
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './effects'
+
+import { StoreModule } from '@ngrx/store';
+import { productsReducer } from './products.reducer';
 
 // Настраиваем маршруты 
 const routes: Routes =[
@@ -25,7 +31,12 @@ const routes: Routes =[
 // декоратор для класса
 @NgModule({
   imports:      [ BrowserModule, HttpClientModule, FormsModule, 
-                BrowserAnimationsModule, AppMaterialModule, RouterModule.forRoot(routes) ],
+                BrowserAnimationsModule, AppMaterialModule, 
+                RouterModule.forRoot(routes), 
+                // StoreModule.forRoot({ products: productsReducer }), 
+                StoreModule.forRoot({ products: productsReducer }), 
+                EffectsModule.forRoot([ProductEffects]) 
+            ],
   // Наш сервис, который получает JSON
   providers: [ ProductsService ],
   // Потому что AppComponent будет являться частью нашего модуля
