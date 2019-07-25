@@ -7,10 +7,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 
+
 import {MatListModule} from '@angular/material/list';
 
 @NgModule({
-    exports: [ MatButtonModule, MatCheckboxModule, 
+    exports: [ MatButtonModule, MatCheckboxModule,
             MatToolbarModule, MatTableModule, MatSortModule,
             MatFormFieldModule, MatInputModule, MatListModule,
             MatCardModule, MatRadioModule ]

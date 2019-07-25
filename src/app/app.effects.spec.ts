@@ -16,8 +16,8 @@ describe('ProductEffects', () => {
       ]
     });
 
-//     effects = TestBed.get<ProductEffects>(ProductEffects);
-//   });
+    // effects = TestBed.get<ProductEffects>(ProductEffects);
+  });
 
 //   it('should be created', () => {
 //     expect(effects).toBeTruthy();

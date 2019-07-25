@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs'
 @Component({
   selector: 'app-products-filtering',
   templateUrl: './products-filtering.component.html',
-  styleUrls: ['./products-filtering.component.css']
+  styleUrls: ['./products-filtering.component.css'],
 })
 export class ProductsFilteringComponent implements OnInit, OnDestroy, 
 OnChanges {
