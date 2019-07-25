@@ -18,9 +18,15 @@ import { Store, select } from '@ngrx/store';
     private httpSubscription: Subscription;
     productsNotConverted: boolean = true;
 
+    MethodToTesting() {
+        
+        this.store.subscribe(data => {this.displayProducts$ = data.products})
+    }
+
     constructor(private productsService: ProductsService,
                 private store: Store<{products: any }> ) {
-                this.store.subscribe(data => {this.displayProducts$ = data.products})
+                // this.store.subscribe(data => {this.displayProducts$ = data.products})
+                this.MethodToTesting();
     }
 
     ngDoCheck(): void {

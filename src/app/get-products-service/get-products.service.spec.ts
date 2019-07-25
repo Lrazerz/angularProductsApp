@@ -44,18 +44,18 @@ describe('ProductsService', () => {
     it('should be Object', inject([ProductsService, HttpTestingController],
         (servicee:ProductsService,backend:HttpTestingController) => {
             
-            let mockUser = {name: 'John'}
+            let mockProduct = {name: 'Product'}
 
             servicee.fetchProducts().subscribe(data => { 
                 
-                return expect(data).toEqual(mockUser);
+                return expect(data).toEqual(mockProduct);
                 }
             );
             backend.expectOne({
                 method: 'GET',
                 url: 'https://demo8421975.mockable.io/products',
                 
-            }).flush(mockUser);
+            }).flush(mockProduct);
             
             
 
