@@ -31,6 +31,13 @@ describe('ProductsFilteringComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
+  it('should have <p> with "banner works!"', () => {
+    const bannerElement: HTMLElement = fixture.nativeElement;
+    const b = bannerElement.querySelector('.filter-category-button');
+    expect(b.textContent).toEqual(' All products ');
+  });
 }
 )
 ;

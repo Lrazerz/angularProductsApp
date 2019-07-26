@@ -55,4 +55,5 @@ describe('ProductsList', () => {
         component.MethodToTesting();
         expect(component.displayProducts$).toEqual([]);
     })
+
 })
