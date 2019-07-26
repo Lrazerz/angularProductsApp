@@ -18,21 +18,20 @@ import { Store, select } from '@ngrx/store';
     private httpSubscription: Subscription;
     productsNotConverted: boolean = true;
 
-    MethodToTesting() {
+    // MethodToTesting() {
         
-        this.store.subscribe(data => {this.displayProducts$ = data.products})
-    }
+    //     this.store.subscribe(data => {this.displayProducts$ = data.products})
+    // }
 
     constructor(private productsService: ProductsService,
                 private store: Store<{products: any }> ) {
-                // this.store.subscribe(data => {this.displayProducts$ = data.products})
-                this.MethodToTesting();
+                this.store.subscribe(data => {this.displayProducts$ = data.products})
+                // this.MethodToTesting();
     }
 
     ngDoCheck(): void {
         if(this.productsNotConverted && this.displayProducts$.length)
             this.ConvertToSortable();
-
     }
 
     @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -43,7 +42,6 @@ import { Store, select } from '@ngrx/store';
         this.displayProducts$.sort = this.sort;
         // to group filter
         this.groupList$ = <[]>this.products$.map(el => el['bsr_category']);
-        
         // only unique
         this.groupList$ = <[]>[...new Set(this.groupList$)];
         // only 1 times

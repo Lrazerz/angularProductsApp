@@ -11,7 +11,7 @@ export class ProductEffects {
     ofType('[Products Page] Load Products'),
     mergeMap(() => this.productsService.fetchProducts()
       .pipe(
-        map(products => ({ type: '[Products API] Products Loaded Success', payload: products })),
+        map(products => {console.log(products);return ({ type: '[Products API] Products Loaded Success', payload: products })}),
         catchError(() => EMPTY)
       ))
     )

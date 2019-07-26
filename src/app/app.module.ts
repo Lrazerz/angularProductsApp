@@ -31,13 +31,13 @@ const routes: Routes =[
 // декоратор для класса
 @NgModule({
     imports:      [ BrowserModule, HttpClientModule, FormsModule, 
-                BrowserAnimationsModule, 
+                BrowserAnimationsModule, AppMaterialModule,
                 RouterModule.forRoot(routes), 
                 // StoreModule.forRoot({ products: productsReducer }), 
                 StoreModule.forRoot({ products: productsReducer }), 
                 EffectsModule.forRoot([ProductEffects]) 
             ],
-    exports: [AppMaterialModule],
+    // exports: [AppMaterialModule],
   // Наш сервис, который получает JSON
     providers: [ ProductsService ],
   // Потому что AppComponent будет являться частью нашего модуля
