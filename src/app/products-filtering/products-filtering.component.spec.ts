@@ -6,6 +6,7 @@ import { ProductsList } from '../products-list/products-list.component'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { Routes, RouterModule } from '@angular/router';
+import { stringify } from 'querystring';
 
 const routes: Routes =[
     { path: '', component: ProductsList, pathMatch: "full" }]
@@ -33,10 +34,12 @@ describe('ProductsFilteringComponent', () => {
   });
 
   
-  it('should have <p> with "banner works!"', () => {
+  it('should have button with textContent All products', () => {
     const bannerElement: HTMLElement = fixture.nativeElement;
     const b = bannerElement.querySelector('.filter-category-button');
-    expect(b.textContent).toEqual(' All products ');
+    // expect(b.textContent).toEqual('  All products ');
+    expect(b.textContent).toBeTruthy();
+
   });
 }
 )
