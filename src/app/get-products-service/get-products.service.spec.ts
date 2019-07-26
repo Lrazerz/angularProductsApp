@@ -6,8 +6,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 
 import { ProductsService } from './get-products.service'
 
-describe('ProductsService', () => {
-    // прост типизируем, undefined
+describe('ProductsService', () => { 
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;   
     let service: ProductsService;
@@ -22,29 +21,14 @@ describe('ProductsService', () => {
     httpClient = TestBed.get(HttpClient);
     httpTestingController = TestBed.get(HttpTestingController);
     service = TestBed.get(ProductsService);
-    
-    // service = new ProductsService(httpClient);
-    //Now requests made in the course of your tests will hit the 
-    // testing backend instead of the normal backend.
-
-    // tests begin
 
      } );
-
-    //  it('should contain object',  (done) => {
-    //      service.fetchProducts().subscribe(data => {
-    //         expect(data).toBe(Object);
-    //         done();
-    //      });
-    //     expect(service).toBeTruthy();
-    //  },10000
-    //  );
 
 
     it('should be Object', inject([ProductsService, HttpTestingController],
         (servicee:ProductsService,backend:HttpTestingController) => {
             
-            let mockProduct = {name: 'Product'}
+            let mockProduct = {name: 'Product'};
 
             servicee.fetchProducts().subscribe(data => { 
                 
@@ -53,16 +37,8 @@ describe('ProductsService', () => {
             );
             backend.expectOne({
                 method: 'GET',
-                url: 'https://demo8421975.mockable.io/products',
+                url: 'https://5d32e98ebecf3e0014ae5438.mockapi.io/products/products',
                 
             }).flush(mockProduct);
-            
-            
-
-            
-        
         }) )
-
-
-
 })

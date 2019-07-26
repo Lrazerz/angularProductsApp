@@ -19,16 +19,12 @@ OnChanges {
     @Input() displayProducts: any;
     @Input() products: any;
     @Input() groupOfProducts: any;
-
     private querySubscription: Subscription;
-
-    // searchquery binded to routing and input
-    searchQuery;
+    searchQuery: string;
     radioButState: string;
-    searchGroupQuery;
-    lastCheckedButton;
+    searchGroupQuery: string;
+    lastCheckedButton: any;
 
-    // check reload
     reloadCheckDone: boolean;
     tofirstIteration: boolean;
 
@@ -50,7 +46,6 @@ OnChanges {
         }
     }
 
-    // group filter ( radiobutton )
     groupFilterRadio(event) {
         this.lastCheckedButton = event;
         this.displayProducts.data = this.products.filter(el => el['bsr_category'] === event.value);
@@ -61,13 +56,11 @@ OnChanges {
         this.searchQuery = "";
         this.searchGroupQuery = "";
         this.radioButState = "";
-        // return data, deleted to group filter
         this.showAllGroups();
         this.updateRoute();
     }
 
     updateRoute() {
-        // If route have no parameters queries, just route to main page
         if(!(this.searchQuery || this.searchGroupQuery)) {
             this.router.navigate(['']);
         } else {
@@ -87,9 +80,7 @@ OnChanges {
         if(this.groupOfProducts && this.reloadCheckDone === false && (this.searchQuery || this.searchGroupQuery)) {
         this.applyFilter(this.searchQuery);
         this.reloadCheckDone = true;
-        // reload radio-button with group filter state
         this.radioButState = this.searchGroupQuery;
-        // "change" event dont occurs, when we change button from comp (?)
         if(this.searchGroupQuery)
             this.displayProducts.data = this.products.filter(el => el['bsr_category'] === this.searchGroupQuery);
         }
